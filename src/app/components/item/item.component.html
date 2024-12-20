@@ -1,0 +1,93 @@
+<form [formGroup]="medicationForm" (ngSubmit)="onSubmit()">
+  
+  <div class="dialog-header">Add medication</div>
+
+  <div class="dialog-body">
+    <div class="form-control">
+      <label for="medicationName">Medication Name</label>
+      <input type="text" id="medicationName" style="width: 100%;" formControlName="name">
+      <span *ngIf="fc['name'].touched && fc['name'].errors" class="form-validation">
+        <span *ngIf="fc['name'].errors['required']">Medication name is required.</span>
+        <span *ngIf="fc['name'].errors['minlength']">Medication name must be at least 3 characters long.</span>
+      </span>
+    </div>
+
+    <div class="form-box">
+      <div class="form-control">
+        <label for="dosage">Dosage</label>
+        <input type="text" id="dosage" formControlName="dosage">
+        <span *ngIf="fc['dosage'].touched && fc['dosage'].errors" class="form-validation">
+          <span *ngIf="fc['dosage'].errors['required']">Dosage is required.</span>
+          <span *ngIf="fc['dosage'].errors['pattern']">Dosage > 0.</span>
+        </span>
+      </div>
+      <div class="form-control">
+        <label for="unit">Unit</label>
+        <select id="unit" formControlName="unit">
+          <option value="Capsules">Capsules</option>
+          <option value="Tables">Tables</option>
+          <option value="Applications">Applications</option>
+          <option value="Drops">Drops</option>
+          <option value="Milligrams">Milligrams</option>
+          <option value="Micrograms">Micrograms</option>
+        </select>
+        <span *ngIf="fc['unit'].touched && fc['unit'].errors" class="form-validation">
+          <span *ngIf="fc['unit'].errors['required']">Unit is required.</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <label for="days">Days</label>
+      <div class="chips">
+        <a 
+          *ngFor="let day of weekdays" 
+          [class.selected] = "day.selected"
+          (click)="onDayClick(day)">
+            {{ day.name }}
+          </a>
+      </div>
+      <span *ngIf="fc['days'].touched && fc['days'].errors" class="form-validation">
+        <span *ngIf="fc['days'].errors['required']">Day is required.</span>
+      </span>
+    </div>
+
+    <div class="form-control">  
+      <label for="time">Times</label>
+      <div formArrayName="times" *ngFor="let t of times().controls; let i=index">
+        <div [formGroupName]="i" class="form-control">
+          <div style="display: flex; align-items: center;">
+            <input type="time" formControlName="time">
+            <button *ngIf="i != 0" class="button" (click)="removeTime(i)">
+              <img src="delete.svg" width="24px" height="24px" alt="delete icon">
+            </button>
+          </div>
+          <span *ngIf="t.get('time')?.touched && t.get('time')?.errors" class="form-validation">
+            <span *ngIf="t.get('time')?.hasError('required')">Time is required.</span>
+            <span *ngIf="t.get('time')?.hasError('unique')">Time must be unique.</span>
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    <button 
+      type="button" 
+      class="button link-button" 
+      (click)="addTime()" 
+      [disabled]="times().controls.length >= 5">
+        + Add time
+    </button>
+  </div>
+
+  <div class="dialog-action">
+    <button type="button" class="button link-button" (click)="closeDialog()">Cancel</button>
+    <button 
+      type="submit" 
+      class="button primary-button" 
+      [disabled]="medicationForm.dirty && medicationForm.invalid">
+      Add
+    </button>
+  </div>
+  <!--{{ medicationForm.value | json }}-->
+</form>
+

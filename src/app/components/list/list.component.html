@@ -1,0 +1,41 @@
+<div class="layout">
+  
+  <div style="margin-bottom: 1rem;">  
+    <h1>Medicator</h1>
+  </div>
+
+  <div class="card">
+      <div class="card-header">
+        <input 
+          type="text" 
+          placeholder="search added medications" 
+          class="searchbar" 
+          (keyup)="search($event)"
+        >
+        <button class="button primary-button" (click)="openDialog()">+ Add medication</button>
+      </div>
+      <div class="table">
+        <div class="table-header">
+          <div>Medication</div>
+          <div>Dosage</div>
+          <div>Frequency</div>
+          <div>Last Updated</div>
+        </div>
+        <mat-progress-bar *ngIf="loading" mode="indeterminate" style="opacity: .4;"></mat-progress-bar>
+        <div *ngFor="let item of (items$ | async)" class="table-body">
+          <div>{{ item?.name }}</div>
+          <div>{{ item?.dosage }} {{ item?.unit }}</div>
+          <div>
+            <span *ngIf="!!item && item.days.length < 7; else everyday">{{ item?.days }}</span>
+            <ng-template #everyday>Every day</ng-template>
+            at {{ item?.times }}
+          </div>
+          <div>{{ item?.lastUpdated | date:"dd MMM yyyy" }}</div>
+        </div>
+        <ng-container *ngIf="!loading && (items$ | async)?.length == 0">
+          <div class="empty-box">No Data.</div>
+        </ng-container>
+      </div>  
+  </div>
+
+</div>

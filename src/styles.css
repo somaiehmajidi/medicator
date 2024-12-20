@@ -1,0 +1,262 @@
+body {
+  background-color: rgba(249, 250, 252, 1);
+  font-family: "Poppins", serif;
+  color: rgba(33, 43, 55, 1);
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0px 0px 5px #ddd;
+  border-radius: .25rem;
+  width: 75%;
+  height: 65vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.searchbar {
+  background-image: url("../public/search.svg");
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  background-position: 8px center;
+  padding-left: 28px !important;
+  min-width: 50%;
+}
+
+.empty-box {
+  text-align: center;
+  color:rgba(33, 43, 55, .75);
+  margin: 1rem 0;
+}
+
+/* table */
+.table {
+  margin: 1rem 0;
+  text-align: left;
+}
+
+.table .table-header {
+  display: flex;
+  font-weight: 600;
+  padding: .25rem;
+}
+
+.table .table-body {
+  display: flex;
+  font-size: .95rem;
+  text-wrap: wrap;
+  border-bottom: 1px solid #eee;
+}
+
+.table .table-body:nth-child(even) {
+  background-color: #eee;
+}
+
+.table-header div:first-child,
+.table-body div:first-child {
+  flex-basis: 30%;
+  padding: 0.25rem;
+}
+
+.table-header div:not(:first-child),
+.table-body div:not(:first-child) {
+  flex-basis: calc(70% / 3);
+  padding: 0.25rem;
+}
+
+/* scroll */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #E6E6E8;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #949597;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #96989d;
+}
+
+/* form */
+.form-control {
+  margin-bottom: 1rem;
+}
+
+.form-control label {
+  display: block;
+  font-size: .8rem;
+}
+
+.form-control span.form-validation {
+  display: block;
+  font-style: italic;
+  font-size: .75rem;
+  color: rgb(190, 50, 50);
+}
+
+.form-box {
+  display: flex;
+  align-items: start;
+}
+  .form-box div:first-child {
+    flex-basis: 73%;
+  }
+
+  .form-box div:last-child {
+    flex-basis: 25%;
+    margin-left: 2%;
+  }
+
+input[type='text'],
+input[type='time'],
+select {
+  box-sizing: border-box;
+  font-family: "Poppins", serif;
+  border: 1px solid #ddd;
+  background-color: transparent;
+  color: rgba(33, 43, 55, .85);
+  font-size: .8rem;
+  line-height: 1.5rem;
+  border-radius: .25rem;
+  outline: none;
+}
+
+input[type='text'],
+input[type='time'] {
+  padding: .25rem .5rem;
+}
+
+select {
+  padding: .4rem .5rem;
+  padding-right: 1rem;
+}
+
+input:hover,
+input:focus,
+select:hover,
+select:focus {
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+input.invalid {
+  border: 1px solid #be3232 !important;
+}
+
+.chips {
+  display: inline-flex;
+  flex-wrap: wrap;
+  border: 1px solid #ddd;
+  font-size: .8rem;
+  border-radius: .25rem;
+}
+
+.chips a {
+  display: inline-block;
+  padding: .5rem .75rem;
+  border-right: 1px solid #ddd;
+}
+
+.chips a:last-child {
+  border-right: none !important;
+}
+
+.chips a:hover {
+  color: rgba(92, 103, 247, 1);
+  cursor: pointer;
+}
+
+.chips a.selected {
+  background-color: rgba(92, 103, 247, 0.1);
+  color: rgba(92, 103, 247, 1);
+}
+
+/* buttons */
+.button {
+  border-radius: .25rem;
+  font-size: .85rem;
+  line-height: 1.5rem;
+  padding: .25rem .5rem;
+  background-color: transparent;
+  border: none;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.primary-button {
+  background-color: rgba(92, 103, 247, 0.1);
+  color: rgba(92, 103, 247, 1);
+}
+
+.primary-button:hover {
+  background-color: rgba(92, 103, 247, 1);
+  color: rgba(255, 255, 255, 1);
+}
+
+.primary-button:disabled {
+  color: rgb(121, 121, 121);
+  background-color: rgb(219, 219, 219);
+}
+
+.link-button {
+  color: rgb(92, 103, 247);
+  background-color: transparent;
+}
+
+.link-button:disabled {
+  color: rgb(121, 121, 121);
+}
+
+.link-button:hover {
+  background-color: rgba(92, 103, 247, 0.1);
+}
+
+/* Dialog */
+.dialog-header {
+  border-bottom: 1px solid #ddd;
+  padding: 1rem;
+  font-weight: 700;
+}
+
+.dialog-body {
+  padding: 1rem;
+  max-height: 65vh;
+  overflow-y: auto;
+}
+
+.dialog-action {
+  display: flex;
+  justify-content: right;
+  border-top: 1px solid #ddd;
+  padding: 1rem;
+}
+  .dialog-action button:first-child {
+    margin: 0 1rem;
+  }
